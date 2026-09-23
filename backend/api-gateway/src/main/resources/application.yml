@@ -1,0 +1,40 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+
+      routes:
+        # Auth Service Routes
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/v1/auth/**, /api/v1/users/**
+
+        # Procurement Service Routes
+        - id: procurement-service
+          uri: ${PROCUREMENT_SERVICE_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/v1/tenders/**, /api/v1/bids/**, /api/v1/vendors/**, /api/v1/documents/**, /api/v1/transactions/**, /api/v1/audit-logs/**, /api/v1/notifications/**, /api/v1/payments/**, /api/v1/internal/**
+
+        # AI Risk Service Routes
+        - id: ai-risk-service
+          uri: ${AI_RISK_SERVICE_URL:http://localhost:8083}
+          predicates:
+            - Path=/api/v1/risk-analysis/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+
+jwt:
+  secret: ${JWT_SECRET}

@@ -1,0 +1,6 @@
+{
+  "name": "CertiBid AI - Government Procurement Risk Analyzer",
+  "description": "Enterprise AI-Powered Government Procurement Risk Analyzer & Lifecycle Management Platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
