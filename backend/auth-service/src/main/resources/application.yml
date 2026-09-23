@@ -6,8 +6,8 @@ spring:
     name: auth-service
 
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/certibid_auth_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: ${SPRING_DATASOURCE_USERNAME:certibid_app}
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?ssl-mode=REQUIRED&serverTimezone=UTC
+    username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -24,3 +24,7 @@ management:
     web:
       exposure:
         include: health, info
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration-ms: 86400000
