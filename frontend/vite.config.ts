@@ -3637,23 +3637,26 @@ const apiMockPlugin = () => {
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss(), apiMockPlugin()],
+
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
       },
     },
+
     build: {
-      outDir: path.resolve(__dirname, '../dist'),
+      outDir: 'dist',
       emptyOutDir: true,
     },
+
     server: {
-  host: '0.0.0.0',
-  port: 3000,
-  allowedHosts: true as const,
-  hmr: process.env.DISABLE_HMR !== 'true',
-  watch: {
-    ignored: ['**/.certibid_db.json'],
-  },
-},
+      host: '0.0.0.0',
+      port: 3000,
+      allowedHosts: true as const,
+      hmr: process.env.DISABLE_HMR !== 'true',
+      watch: {
+        ignored: ['**/.certibid_db.json'],
+      },
+    },
   };
 });
